@@ -160,6 +160,7 @@ y_sort_enabled = true
 scale = Vector2(1.2, 1.2)
 script = ExtResource("1_m6sh6")
 vida = 25
+XP = 10.0
 dead = ExtResource("2_iijlg")
 marker = NodePath("Marker2D")
 

@@ -159,6 +159,7 @@ height = 120.0
 [node name="inimigo pawn" type="CharacterBody2D" node_paths=PackedStringArray("marker") groups=["grupo enemy"]]
 y_sort_enabled = true
 script = ExtResource("1_111h8")
+XP = 5.0
 dead = ExtResource("2_msrqs")
 marker = NodePath("Marker2D")
 

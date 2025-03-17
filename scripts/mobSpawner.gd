@@ -1,18 +1,27 @@
 extends Node2D
 
 @export var array: Array[PackedScene]
+@export var raridadeMonstro: Array[float]
 @export var criadurasPorMinuto: float = 60.0
 @export var ondaDuracao: float = 20.0
 @export var monstrosPorOnda: float = 30.0
-@export var breakIntensidade: float = 0.2
+@export var breakIntensidade: float = 0.1
 @export var path: PathFollow2D
 
+var player
 var cooldown = 0.0
 var tempo = 0.0
+var dificuldade
+
+func _ready():
+	player = GameManager.player
+	dificuldade = 1
 
 func _process(delta):
 	tempo += delta
-
+	
+	if tempo/60 >= 1.5:
+		dificuldade = 2
 	# Calcula a taxa de spawn base
 	var spawnRate = criadurasPorMinuto + monstrosPorOnda * ((tempo / 60.0) * 3) 
 
@@ -40,10 +49,11 @@ func _process(delta):
 	parametros.position = point
 	var resultado: Array = worldStatus.intersect_point(parametros, 1)
 
-	if not resultado.is_empty():
-		return
+	if not resultado.is_empty():		return
 		
-	var numero = randi_range(0, array.size() - 1)
+	var numero = randf_range(0, 1)
+	numero = escolherMonstro(array , raridadeMonstro ,numero)
+	
 	var criatura_scene = array[numero]
 	var criatura = criatura_scene.instantiate()
 	criatura.global_position = point
@@ -52,4 +62,24 @@ func _process(delta):
 func spaw() -> Vector2:
 	path.progress_ratio = randf()
 	return path.global_position
+	
+func escolherMonstro(array: Array, raridade: Array, numero: float) -> int:
+	var i = 0
+	var contador = 0
+	
+	# telho que colocar mais monstros e raridade neles
+	if dificuldade == 2:
+		i = 3
+		
+	for mostro in array:
+		if contador == 3:
+			return 0
+		else:
+			if numero < raridade[i]:
+				return i
+			else: 
+				i += 1
+				contador += 1
+	return 0
+	pass
 

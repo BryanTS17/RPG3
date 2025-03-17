@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c2ovtobo44lxe"]
+[gd_scene load_steps=22 format=3 uid="uid://c2ovtobo44lxe"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7n4mj"]
 [ext_resource type="PackedScene" uid="uid://dj4eaxdcwb6vx" path="res://deads/dead_inimigo.tscn" id="2_srs2b"]
@@ -298,7 +298,13 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhado"]
 bg_color = Color(1, 0, 0, 1)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("animacao", "sprint", "area_ataque", "barraProgreso") groups=["player"]]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vnhl"]
+bg_color = Color(0, 0, 0, 0.705882)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhtex"]
+bg_color = Color(1, 0.466667, 0.0705882, 1)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("animacao", "sprint", "area_ataque", "barraProgreso", "barraXp") groups=["player"]]
 scale = Vector2(1.1, 1.1)
 script = ExtResource("1_7n4mj")
 animacao = NodePath("Sprite2D/AnimationPlayer")
@@ -306,6 +312,7 @@ sprint = NodePath("Sprite2D")
 area_ataque = NodePath("areaDeAtaque")
 dead = ExtResource("2_srs2b")
 barraProgreso = NodePath("ProgressBar")
+barraXp = NodePath("ProgressBar2")
 scene_habilidade_Castelo = ExtResource("3_hxnci")
 attack_doll = 0.6
 DanoTempo = 0.6
@@ -329,7 +336,7 @@ shape = SubResource("CapsuleShape2D_jqcdv")
 [node name="areaDeAtaque" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="areaDeAtaque"]
-position = Vector2(0, -30)
+position = Vector2(0.90909, -29.0909)
 shape = SubResource("CircleShape2D_hxwdx")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
@@ -340,6 +347,18 @@ offset_bottom = 26.0
 theme_override_styles/background = SubResource("StyleBoxFlat_x7uvy")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vhado")
 value = 70.0
+show_percentage = false
+
+[node name="ProgressBar2" type="ProgressBar" parent="."]
+offset_left = -59.0
+offset_top = 26.0
+offset_right = 59.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.431373, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_0vnhl")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xhtex")
+value = 20.0
 show_percentage = false
 
 [node name="Marker2D" type="Marker2D" parent="."]

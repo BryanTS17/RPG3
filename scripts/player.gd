@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var dead: PackedScene
 @export var cenario: PackedScene
 @export var barraProgreso: ProgressBar
+@export var barraXp: ProgressBar
 
 @export var scene_habilidade_Castelo: PackedScene
 
@@ -18,6 +19,7 @@ extends CharacterBody2D
 @export var vidaMaxima: float = 100
 @export var ataque: float = 5
 @export var speed: float = 3.0
+@export var level: int = 1
 @export var valor_lerp: float = 0.2
 @export var habilidade_castelo: bool = false
 @export var habilidade_ritual: bool = false
@@ -25,6 +27,9 @@ extends CharacterBody2D
 @export var DanoTempo: float = 0.5
 @export var tempo_Habilidade_Castelo: float = 3.0
 
+var kills: int
+var XPMax: float
+var XP: float
 var tempo_Castelo_reset = tempo_Habilidade_Castelo
 var in_attack: bool = false
 var tempoDano: float = 0.0
@@ -33,7 +38,7 @@ var tempo = attack_doll
 var atadown: bool = false
 var ataup: bool = false
 var atafrente: bool = false
-
+var XPInicio = 100
 
 #func _process(delta: float) -> void:
 #	if Input.is_action_just_released("mover-right"):
@@ -45,10 +50,15 @@ var atafrente: bool = false
 #			rum = true
 
 func _ready():
+	kills = 0
+	GameManager.player = self
 	tempo_Habilidade_Castelo *= 60.0
 	tempo_Castelo_reset = tempo_Habilidade_Castelo
+	XPMax = XPInicio
 
 func _process(delta: float) -> void:
+	barraXp.max_value = XPMax
+	barraXp.value = XP
 	barraProgreso.max_value = vidaMaxima
 	barraProgreso.value = vida
 	GameManager.player_position = position
@@ -62,6 +72,9 @@ func _process(delta: float) -> void:
 		in_attack = false
 	if Input.is_action_pressed("atacar"):
 		attack() 
+	if XP >= XPMax:
+		upar_level()
+
 
 func _physics_process(delta: float) -> void:
 	var direcao = Input.get_vector("mover esquerda", "mover direita", "mover cima", "mover baixo")
@@ -221,7 +234,6 @@ func darDanoFrente() -> void:
 				
 func danoRitual(dano: float, body) -> void:
 	body.tomar_dano(dano)
-	pass
 
 func ativarCastelo() -> void:
 
@@ -237,7 +249,13 @@ func ativarCastelo() -> void:
 		
 func habilitar_castelo() -> void:
 	habilidade_castelo = true
-	pass
 
 func habilitar_ritual() -> void:
 	habilidade_ritual = true
+
+func upar_level():
+	XPMax = XPInicio * ((level / 5) + 1)
+	XP = 0
+	vida += vidaMaxima / 2
+	ataque += 2
+	level += 1

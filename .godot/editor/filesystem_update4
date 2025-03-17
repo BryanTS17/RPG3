@@ -20,3 +20,8 @@ res://deads/big_dead_inimigo.tscn
 res://deads/dead_inimigo.tscn
 res://deads/little_dead_inimigo.tscn
 res://scripts/mobSpawner.gd
+res://scripts/enemy.gd
+res://scripts/GameManager.gd
+res://cenas/canvasPrincipal.tscn
+res://cenas/kills.gd
+res://cenas/levelCavas.gd

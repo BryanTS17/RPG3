@@ -64,6 +64,7 @@ height = 42.0
 y_sort_enabled = true
 script = ExtResource("1_a8pgx")
 vida = 5
+XP = 2.0
 dead = ExtResource("2_pfcic")
 marker = NodePath("Marker2D")
 

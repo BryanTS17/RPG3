@@ -1,7 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://kynjjv3iw4c2"]
+[gd_scene load_steps=12 format=3 uid="uid://kynjjv3iw4c2"]
 
 [ext_resource type="Texture2D" uid="uid://bhium6odylcpb" path="res://addons/Tiny Swords (Update 010)/UI/Banners/Banner_Horizontal.png" id="1_127io"]
 [ext_resource type="Script" path="res://scripts/tempoJogo.gd" id="1_ap5c1"]
+[ext_resource type="Script" path="res://cenas/kills.gd" id="3_jurpi"]
+[ext_resource type="Script" path="res://cenas/levelCavas.gd" id="3_kpr1p"]
+[ext_resource type="Texture2D" uid="uid://dkmfsqchgi0d5" path="res://addons/Tiny Swords (Update 010)/UI/Ribbons/Ribbon_Blue_3Slides.png" id="4_slbfg"]
+[ext_resource type="Texture2D" uid="uid://c106rhadbfidk" path="res://addons/Tiny Swords (Update 010)/UI/Banners/Banner_Connection_Up.png" id="5_trr7x"]
+[ext_resource type="Texture2D" uid="uid://dmfip6fpplxt6" path="res://addons/Tiny Swords (Update 010)/Factions/Knights/Troops/Dead/Dead.png" id="6_fa33j"]
+
+[sub_resource type="SystemFont" id="SystemFont_7kvyx"]
+font_weight = 450
+font_stretch = 125
+
+[sub_resource type="LabelSettings" id="LabelSettings_tqkf6"]
+font = SubResource("SystemFont_7kvyx")
+font_size = 19
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4jrv6"]
+font_size = 23
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tk6j8"]
 texture = ExtResource("1_127io")
@@ -13,7 +31,7 @@ axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 region_rect = Rect2(31.8918, 46.6094, 127.615, 123.828)
 
-[node name="Node2D" type="Node2D"]
+[node name="cavasPrincipal" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -30,6 +48,32 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("1_ap5c1")
 
+[node name="Label2" type="Label" parent="CanvasLayer"]
+z_index = 1
+offset_left = 143.0
+offset_top = 44.0
+offset_right = 187.0
+offset_bottom = 71.0
+text = "3333
+"
+label_settings = SubResource("LabelSettings_tqkf6")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_jurpi")
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+z_index = 1
+offset_left = 88.0
+offset_top = 81.0
+offset_right = 205.0
+offset_bottom = 123.0
+text = "level:    22
+"
+label_settings = SubResource("LabelSettings_4jrv6")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_kpr1p")
+
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
@@ -38,3 +82,30 @@ offset_left = -242.0
 offset_bottom = 85.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_tk6j8")
+
+[node name="RibbonBlue3Slides" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(140.5, 88)
+scale = Vector2(1.11979, 1)
+texture = ExtResource("4_slbfg")
+
+[node name="BannerConnectionUp" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(145.5, 99)
+scale = Vector2(1.15104, 1.05729)
+texture = ExtResource("5_trr7x")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer"]
+offset_left = 56.0
+offset_top = 77.0
+offset_right = 237.0
+offset_bottom = 162.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_tk6j8")
+
+[node name="Dead" type="Sprite2D" parent="CanvasLayer"]
+z_index = 1
+position = Vector2(112, 35)
+texture = ExtResource("6_fa33j")
+hframes = 7
+vframes = 2
+frame = 6

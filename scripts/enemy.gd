@@ -1,10 +1,15 @@
 class_name Enemy
 extends Node2D
 
-@export var vida: int = 10
+@export var vida: float = 10.0
+@export var XP: float
 @export var dead: PackedScene
 @export var marker: Marker2D
+@onready var player
 @onready var marcarDanoScene: PackedScene = load("res://cenas/danoDomato.tscn")
+
+func _ready():
+	player = GameManager.player
 
 func tomar_dano(dano: int) -> void:
 	vida -= dano
@@ -17,7 +22,6 @@ func tomar_dano(dano: int) -> void:
 	
 	var marcarDano = marcarDanoScene.instantiate()
 	if marker:
-		print(marker.position)
 		marcarDano.global_position = marker.global_position
 	else:
 		marcarDano.position = position
@@ -31,6 +35,8 @@ func tomar_dano(dano: int) -> void:
 
 func die() -> void:
 	if dead:
+		player.kills += 1
+		player.XP += XP
 		var morreu = dead.instantiate()
 		morreu.position = position
 		get_parent().add_child(morreu)
