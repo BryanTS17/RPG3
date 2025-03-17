@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://oadwtndotry5"]
+
+[ext_resource type="Script" path="res://scripts/coletarCarne.gd" id="1_cyk1t"]
+[ext_resource type="Texture2D" uid="uid://bhsdwfe8y5qhg" path="res://addons/Tiny Swords (Update 010)/Resources/Resources/M_Spawn.png" id="2_bi44g"]
+[ext_resource type="PackedScene" uid="uid://chggohvh4jol0" path="res://recursos/animação de coletar/meadColetado.tscn" id="2_h7kuo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f1im4"]
+radius = 30.0167
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vc6s"]
+atlas = ExtResource("2_bi44g")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa24y"]
+atlas = ExtResource("2_bi44g")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no6ea"]
+atlas = ExtResource("2_bi44g")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo71b"]
+atlas = ExtResource("2_bi44g")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qap8h"]
+atlas = ExtResource("2_bi44g")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vdad"]
+atlas = ExtResource("2_bi44g")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tgmj"]
+atlas = ExtResource("2_bi44g")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6ky01"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vc6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pa24y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_no6ea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uo71b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qap8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vdad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tgmj")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="areaDeColeta" type="Area2D" node_paths=PackedStringArray("coletar")]
+script = ExtResource("1_cyk1t")
+coletar = NodePath("CollisionShape2D")
+coletado = ExtResource("2_h7kuo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 16)
+shape = SubResource("CircleShape2D_f1im4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6ky01")
+autoplay = "default"
+frame = 6
+frame_progress = 1.0

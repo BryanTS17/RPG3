@@ -1,0 +1,222 @@
+[gd_scene load_steps=22 format=3 uid="uid://bl8jfw1xjfiv4"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_m6sh6"]
+[ext_resource type="PackedScene" uid="uid://d8vjf1wmejeu" path="res://deads/big_dead_inimigo.tscn" id="2_iijlg"]
+[ext_resource type="Texture2D" uid="uid://b4ai3lme5bihr" path="res://addons/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Blue/Torch_Blue.png" id="3_26cw8"]
+[ext_resource type="Script" path="res://scripts/ataqueEnemy.gd" id="3_tavbb"]
+[ext_resource type="Script" path="res://scripts/sequirGrupoPlayer.gd" id="5_cicad"]
+[ext_resource type="Script" path="res://scripts/girarSprintEnemy.gd" id="5_x8twc"]
+
+[sub_resource type="Animation" id="Animation_aw6xd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0ewdw"]
+resource_name = "attack frente"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/attack goblin")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"atacaPlayer"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_c1g7j"]
+resource_name = "idle"
+length = 0.75
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j3p6a"]
+resource_name = "rum"
+length = 0.65
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e72xj"]
+_data = {
+"RESET": SubResource("Animation_aw6xd"),
+"attack frente": SubResource("Animation_0ewdw"),
+"idle": SubResource("Animation_c1g7j"),
+"rum": SubResource("Animation_j3p6a")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7raij"]
+atlas = ExtResource("3_26cw8")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8iuj"]
+atlas = ExtResource("3_26cw8")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwe3e"]
+atlas = ExtResource("3_26cw8")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0mcy"]
+atlas = ExtResource("3_26cw8")
+region = Rect2(576, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2neon"]
+atlas = ExtResource("3_26cw8")
+region = Rect2(768, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2s6cq"]
+atlas = ExtResource("3_26cw8")
+region = Rect2(960, 192, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_beuoa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7raij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8iuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwe3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0mcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2neon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2s6cq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r2d8d"]
+radius = 31.0
+height = 80.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wb3lp"]
+radius = 172.838
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tn5kf"]
+radius = 96.0
+height = 192.0
+
+[node name="inimigo goblin" type="CharacterBody2D" node_paths=PackedStringArray("marker") groups=["grupo enemy"]]
+y_sort_enabled = true
+scale = Vector2(1.2, 1.2)
+script = ExtResource("1_m6sh6")
+vida = 25
+dead = ExtResource("2_iijlg")
+marker = NodePath("Marker2D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e72xj")
+}
+autoplay = "rum"
+
+[node name="attack goblin" type="Node" parent="AnimationPlayer" node_paths=PackedStringArray("areaAtiva", "areaAtaque", "animacao", "inimigo")]
+script = ExtResource("3_tavbb")
+areaAtiva = NodePath("../../Area2D")
+areaAtaque = NodePath("../../areaAtaque")
+animacao = NodePath("..")
+inimigo = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.27374e-13, -37)
+scale = Vector2(1.21354, 1.21354)
+texture = ExtResource("3_26cw8")
+hframes = 7
+vframes = 5
+
+[node name="Node" type="Node" parent="Sprite2D" node_paths=PackedStringArray("node")]
+script = ExtResource("5_x8twc")
+node = NodePath("../../sequir")
+
+[node name="sprint pawn" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(3.8147e-06, -37)
+scale = Vector2(1.30208, 1.30208)
+sprite_frames = SubResource("SpriteFrames_beuoa")
+autoplay = "default"
+frame_progress = 0.881289
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["grupo_enemigos"]]
+position = Vector2(0, -37)
+shape = SubResource("CapsuleShape2D_r2d8d")
+
+[node name="sequir" type="Node" parent="."]
+script = ExtResource("5_cicad")
+speed = 0.7
+nodeAtaqueEnemy = NodePath("../AnimationPlayer/attack goblin")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="areaDeAtivacao" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -37)
+shape = SubResource("CircleShape2D_wb3lp")
+
+[node name="areaAtaque" type="Area2D" parent="."]
+
+[node name="areaDoAtaque" type="CollisionShape2D" parent="areaAtaque"]
+position = Vector2(0, -37)
+shape = SubResource("CapsuleShape2D_tn5kf")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -61)
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]

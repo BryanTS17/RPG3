@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://betnxils186il"]
+
+[ext_resource type="Script" path="res://scripts/sumonarCasaGoblin.gd" id="1_1ywau"]
+[ext_resource type="PackedScene" uid="uid://bl8jfw1xjfiv4" path="res://personagens/pasta inimigos/inimigo_goblin.tscn" id="2_0mta6"]
+[ext_resource type="PackedScene" uid="uid://do6iesjv5sx2m" path="res://deads/casaGoblinDestruido.tscn" id="2_uk8sm"]
+[ext_resource type="Texture2D" uid="uid://bk5l6opkme3we" path="res://addons/Tiny Swords (Update 010)/Factions/Goblins/Buildings/Wood_House/Goblin_House.png" id="3_cestq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anu4c"]
+size = Vector2(103, 61)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aaawx"]
+radius = 720.1
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("marker", "areaAtivacao", "marker1") groups=["grupo enemy"]]
+y_sort_enabled = true
+script = ExtResource("1_1ywau")
+vida = 50.0
+soldadosPorMinuto = 5.0
+dead = ExtResource("2_uk8sm")
+marker = NodePath("Marker2D")
+areaAtivacao = NodePath("Area2D")
+soldado = ExtResource("2_0mta6")
+marker1 = NodePath("markerSoldado1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, -130.5)
+shape = SubResource("RectangleShape2D_anu4c")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -147)
+scale = Vector2(1.30078, 1.30078)
+texture = ExtResource("3_cestq")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -191)
+
+[node name="markerSoldado1" type="Marker2D" parent="."]
+position = Vector2(-1, -34)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(5, -139)
+shape = SubResource("CircleShape2D_aaawx")

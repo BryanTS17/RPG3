@@ -1,0 +1,22 @@
+res://cenas/cenario principal.tscn
+res://personagens/pasta amigos/player.tscn
+res://magias/inpulsoDoRitual.tscn
+res://cene teste.tscn
+res://cenas/mob_spawner.tscn
+res://cenas/item_spawner.tscn
+res://scripts/player.gd
+res://recursos/carne.tscn
+res://magias/coletar_ritual.tscn
+res://magias/coletar_ritual.gd
+res://scripts/scriptInpulsoDoRitual.gd
+res://deads/casaGoblinDestruido.tscn
+res://personagens/pasta inimigos/sumonarCasaGoblin.tscn
+res://deads/casteloDestruido.tscn
+res://scripts/sumonarCasaGoblin.gd
+res://personagens/pasta inimigos/inimigo_goblin.tscn
+res://personagens/pasta inimigos/inimigo_lamb.tscn
+res://personagens/pasta inimigos/inimigo_pawn.tscn
+res://deads/big_dead_inimigo.tscn
+res://deads/dead_inimigo.tscn
+res://deads/little_dead_inimigo.tscn
+res://scripts/mobSpawner.gd

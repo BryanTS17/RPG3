@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://kynjjv3iw4c2"]
+
+[ext_resource type="Texture2D" uid="uid://bhium6odylcpb" path="res://addons/Tiny Swords (Update 010)/UI/Banners/Banner_Horizontal.png" id="1_127io"]
+[ext_resource type="Script" path="res://scripts/tempoJogo.gd" id="1_ap5c1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tk6j8"]
+texture = ExtResource("1_127io")
+texture_margin_left = 33.0217
+texture_margin_top = 21.349
+texture_margin_right = 30.6963
+texture_margin_bottom = 39.9737
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(31.8918, 46.6094, 127.615, 123.828)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -65.0
+offset_right = 66.0
+offset_bottom = 29.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_ap5c1")
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -242.0
+offset_bottom = 85.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_tk6j8")

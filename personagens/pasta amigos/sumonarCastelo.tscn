@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1jd8yjryu8w0"]
+
+[ext_resource type="Script" path="res://scripts/sumonarCastelo.gd" id="1_nvugh"]
+[ext_resource type="Texture2D" uid="uid://263q5v063acr" path="res://addons/Tiny Swords (Update 010)/Factions/Knights/Buildings/Castle/Castle_Blue.png" id="1_txwrx"]
+[ext_resource type="PackedScene" uid="uid://dw7v8uj6ainh4" path="res://deads/casteloDestruido.tscn" id="2_endfk"]
+[ext_resource type="PackedScene" uid="uid://llyjirkllpy8" path="res://personagens/pasta amigos/amigoSoldado.tscn" id="3_y6jeg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anu4c"]
+size = Vector2(337, 51)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("marker", "marker1", "marker2", "marker3", "marker4") groups=["grupo player"]]
+script = ExtResource("1_nvugh")
+vida = 200.0
+dead = ExtResource("2_endfk")
+marker = NodePath("Marker2D")
+soldado = ExtResource("3_y6jeg")
+marker1 = NodePath("markerSoldado1")
+marker2 = NodePath("markerSoldado2")
+marker3 = NodePath("markerSoldado3")
+marker4 = NodePath("markerSoldado4")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -147)
+scale = Vector2(1.30078, 1.30078)
+texture = ExtResource("1_txwrx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -80)
+shape = SubResource("RectangleShape2D_anu4c")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -191)
+
+[node name="markerSoldado1" type="Marker2D" parent="."]
+position = Vector2(-299, 43)
+
+[node name="markerSoldado2" type="Marker2D" parent="."]
+position = Vector2(330, 37)
+
+[node name="markerSoldado3" type="Marker2D" parent="."]
+position = Vector2(156, 213)
+
+[node name="markerSoldado4" type="Marker2D" parent="."]
+position = Vector2(-150, 216)

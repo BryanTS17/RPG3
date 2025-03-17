@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://ystekjah8xva"]
+
+[ext_resource type="Script" path="res://scripts/mobSpawner.gd" id="1_8qcmu"]
+[ext_resource type="PackedScene" uid="uid://bl8jfw1xjfiv4" path="res://personagens/pasta inimigos/inimigo_goblin.tscn" id="2_kqc8b"]
+[ext_resource type="PackedScene" uid="uid://cwi50p7s4jgl0" path="res://personagens/pasta inimigos/inimigo_lamb.tscn" id="3_t4riu"]
+[ext_resource type="PackedScene" uid="uid://c4xta7b5tbyek" path="res://personagens/pasta inimigos/inimigo_pawn.tscn" id="4_0e2oa"]
+
+[sub_resource type="Curve2D" id="Curve2D_ligk7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -483.041, -176.118, 0, 0, 0, 0, -464.263, 956.521, 0, 0, 0, 0, 613.977, 1062.37, 0, 0, 0, 0, 1635.88, 909.768, 0, 0, 0, 0, 1626, 389.398, 13.5527, 19.3543, -13.5527, -19.3543, 1648.73, -169.943, 0, 0, 0, 0, 561.596, -239.63, 0, 0, 0, 0, -402, -172)
+}
+point_count = 8
+
+[node name="mobSpawner" type="Node2D" node_paths=PackedStringArray("path")]
+script = ExtResource("1_8qcmu")
+array = Array[PackedScene]([ExtResource("2_kqc8b"), ExtResource("3_t4riu"), ExtResource("4_0e2oa")])
+path = NodePath("Path2D/PathFollow2D")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-242.446, -416.052)
+scale = Vector2(1.54928, 1.73579)
+curve = SubResource("Curve2D_ligk7")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-483.041, -176.118)
+rotation = 1.55422
+
+[node name="_Timer_204761" type="Timer" parent="Path2D/PathFollow2D"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Timer" type="Timer" parent="Path2D"]

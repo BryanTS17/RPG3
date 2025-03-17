@@ -1,0 +1,89 @@
+[gd_scene load_steps=14 format=3 uid="uid://cwi50p7s4jgl0"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_a8pgx"]
+[ext_resource type="PackedScene" uid="uid://cs3nd2q5qs5xi" path="res://deads/little_dead_inimigo.tscn" id="2_pfcic"]
+[ext_resource type="Texture2D" uid="uid://psdwtff5yg02" path="res://addons/Tiny Swords (Update 010)/Resources/Sheep/HappySheep_Bouncing.png" id="3_2bgkg"]
+[ext_resource type="Script" path="res://scripts/girarSprintEnemy.gd" id="5_l5h2d"]
+[ext_resource type="Script" path="res://scripts/sequirGrupoPlayer.gd" id="7_7xcpk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r73bc"]
+atlas = ExtResource("3_2bgkg")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54g4y"]
+atlas = ExtResource("3_2bgkg")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qumwg"]
+atlas = ExtResource("3_2bgkg")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tddoj"]
+atlas = ExtResource("3_2bgkg")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bicjl"]
+atlas = ExtResource("3_2bgkg")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nbag"]
+atlas = ExtResource("3_2bgkg")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_beuoa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r73bc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54g4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qumwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tddoj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bicjl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nbag")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r2d8d"]
+radius = 21.0
+height = 42.0
+
+[node name="inimigo lamb" type="CharacterBody2D" node_paths=PackedStringArray("marker") groups=["grupo enemy"]]
+y_sort_enabled = true
+script = ExtResource("1_a8pgx")
+vida = 5
+dead = ExtResource("2_pfcic")
+marker = NodePath("Marker2D")
+
+[node name="sprint pawn" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.666558, -33.3334)
+sprite_frames = SubResource("SpriteFrames_beuoa")
+autoplay = "default"
+frame_progress = 0.106867
+
+[node name="Node" type="Node" parent="sprint pawn" node_paths=PackedStringArray("node")]
+script = ExtResource("5_l5h2d")
+node = NodePath("../../sequir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["grupo_enemigos"]]
+position = Vector2(0, -37)
+shape = SubResource("CapsuleShape2D_r2d8d")
+
+[node name="sequir" type="Node" parent="."]
+script = ExtResource("7_7xcpk")
+speed = 1.5
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -61)
